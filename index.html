@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch Harsh</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            background-color: lightblue;
+        }
+        #harsh {
+            font-size: 24px;
+            font-weight: bold;
+            color: darkblue;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="harsh">HARSH</div>
+    <script>
+        const harsh = document.getElementById('harsh');
+        const moveDistance = 50;
+
+        document.addEventListener('mousemove', (event) => {
+            const mouseX = event.clientX;
+            const mouseY = event.clientY;
+            const harshRect = harsh.getBoundingClientRect();
+
+            // Calculate the distance between the cursor and the "HARSH" element
+            const distanceX = mouseX - (harshRect.left + harshRect.width / 2);
+            const distanceY = mouseY - (harshRect.top + harshRect.height / 2);
+            const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+            // If the cursor is too close, move "HARSH" to a new random position
+            if (distance < 100) {
+                const newLeft = Math.random() * (window.innerWidth - harshRect.width);
+                const newTop = Math.random() * (window.innerHeight - harshRect.height);
+                harsh.style.left = `${newLeft}px`;
+                harsh.style.top = `${newTop}px`;
+            }
+        });
+
+        // Initial random position
+        harsh.style.left = `${Math.random() * (window.innerWidth - harsh.offsetWidth)}px`;
+        harsh.style.top = `${Math.random() * (window.innerHeight - harsh.offsetHeight)}px`;
+    </script>
+</body>
+</html>
